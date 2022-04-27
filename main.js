@@ -76,7 +76,7 @@ async function draw_run(used_id){
             cal_data[k]=(cal_data[k]-mean_cal_data)/s_cal_data;
             cal_data[k]=Math.exp(cal_data[k])
         }else{
-            cal_data[k]=-100;
+            cal_data[k]=0;
         }
     }
     console.log(cal_data);
