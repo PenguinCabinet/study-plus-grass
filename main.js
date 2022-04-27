@@ -122,7 +122,7 @@ function button_draw_run(){
 function onload_draw_run(){
     const searchParams = new URLSearchParams(window.location.search)
     const user_id=searchParams.get('userid');
-    if(user_id===null){
+    if(user_id===null||user_id==""){
         var now = new Date();
         cal.init({
             domain:"month",
