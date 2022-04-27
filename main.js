@@ -1,8 +1,7 @@
 var cal = new CalHeatMap();
 //cal.init({domain:"month",itemSelector: "#user-heatmap",range: 3});
-onload_draw_run();
-
 const range_cal=6;
+onload_draw_run();
 
 function Get_now(){
 	return dayjs().tz()
