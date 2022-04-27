@@ -129,7 +129,21 @@ function onload_draw_run(){
             itemSelector: "#user-heatmap",
             range: range_cal,
             start: new Date(now.getFullYear(), now.getMonth() - range_cal+1),
-            end:now
+            end:now,
+            legend: [
+                Math.exp(0),
+                Math.exp(0.25),
+                Math.exp(0.5),
+                Math.exp(0.75),
+                Math.exp(1),
+                Math.exp(1.5),
+                Math.exp(2)
+            ],
+            legendColors: {
+                min: "#efefef",
+                empty: "#efefef",
+                max: "green",
+            }
         });
     }else{
         document.getElementById("input_id").value=user_id;
