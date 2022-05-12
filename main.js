@@ -9,7 +9,12 @@ function Get_now(){
 
 
 async function draw_run(used_id){
-    let user_json_data=await (await fetch(`https://api.studyplus.jp/2/users/${used_id}/`)).json()
+    try {
+        var user_json_data=await (await fetch(`https://api.studyplus.jp/2/users/${used_id}/`)).json()
+    } catch (err) { 
+        document.getElementById("console").innerHTML="ユーザー情報を取得できませんでした。<br>存在しないユーザーか、勉強時間が非表示に設定されている可能性があります"
+        return;
+    }
     console.log(user_json_data)
     console.log(user_json_data["nickname"])
     document.getElementById("user-name").textContent=user_json_data["nickname"];
@@ -126,10 +131,20 @@ function button_draw_run(){
     window.location.search = params.toString()
 }
 
+function url_to_user_id(x){
+    let pattern = RegExp(`https://(www\.)?studyplus.jp/users/(.+)`);
+    let A_arr=x.match(pattern);
+    if(A_arr==null){
+        return null;
+    }
+    let A=A_arr[2];
+    return A;
+}
+
 function onload_draw_run(){
     const searchParams = new URLSearchParams(window.location.search)
-    const user_id=searchParams.get('userid');
-    if(user_id===null||user_id==""){
+    const user_id_url=searchParams.get('userid');
+    if(user_id_url===null||user_id_url==""){
         var now = new Date();
         cal.init({
             domain:"month",
@@ -155,7 +170,12 @@ function onload_draw_run(){
             cellPadding:4,
         });
     }else{
-        document.getElementById("input_id").value=user_id;
+        document.getElementById("input_id").value=user_id_url;
+        let user_id=url_to_user_id(user_id_url);
+        if(user_id==null){
+            document.getElementById("console").innerText="入力されたユーザーURLが間違っています"
+            return;
+        }
         draw_run(user_id);
     }
 }

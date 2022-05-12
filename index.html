@@ -1,6 +1,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
 
         <title>Study Plus Grass</title>
         <link rel="icon" href="image/icno.png">
@@ -12,7 +13,7 @@
         <meta property="og:description" content="Drawing the grass like Github by your studying time of Study Plus." />
         <meta property="og:site_name" content="Study Plus Grass" />        
         <meta property="og:image" content="https://spg.penguincabinet.com/image/icno.png" />
-        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:card" content="summary_large_image" />
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
         <script type="text/javascript" src="//d3js.org/d3.v3.min.js"></script>
@@ -46,19 +47,21 @@
         <p>
             <div class="uk-grid-small" uk-grid>
                 <div class="uk-width-1-2@s">
-                    <input placeholder="ユーザーID(xxxの部分):https://www.studyplus.jp/users/xxxxxxxxxxxx" class="uk-input" type="text" id="input_id"/>
+                    <input placeholder="ユーザーのホームURL:https://www.studyplus.jp/users/xxxxxxxxxxxx" class="uk-input" type="text" id="input_id"/>
                 </div>
                 <div class="uk-width-1-2@s">
                     <button class="uk-button  uk-button-primary" onclick="button_draw_run();">Draw</button>
                 </div>
             </div>
         </p>
+        <div id="console" class="uk-text-bold"></div>
         <p>
             <h2 id="user-name"></h2>
             <div id="user-heatmap"></div>
         </p>
 
         <p id="warning">
+            ほかの人に共有したい場合Drawした後、このページのURLをそのまま送ればOKです。<br/>
             これはAPIを使用していますが、実際にこのAPIが使っても大丈夫なのかグレーです。<br/>
             サービス運営者様から停止要請が来た場合、停止いたしますのでご了承ください。<br/>
             また、このサービスについては無保証・非公式です。自己責任でお使いください。<br/>
