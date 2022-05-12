@@ -69,6 +69,7 @@ async function draw_run(used_id){
     s_cal_data/=Object.keys(cal_data).length ;
     s_cal_data=Math.sqrt(s_cal_data);
 
+    /*
     console.log(Is_zero_cal);
 
     for (let k in cal_data) {
@@ -80,6 +81,18 @@ async function draw_run(used_id){
         }
     }
     console.log(cal_data);
+    */
+
+    let base_legend=[
+        0,
+        0.25,
+        0.5,
+        0.75,
+        1,
+        1.5,
+        2
+    ];
+    let legend=base_legend.map(e=>s_cal_data*e+mean_cal_data);
     
     document.getElementById("user-heatmap").textContent="";
 
@@ -91,20 +104,14 @@ async function draw_run(used_id){
         data:cal_data,
         start: new Date(now.getFullYear(), now.getMonth() - range_cal+1),
         end:now,
-        legend: [
-            Math.exp(0),
-            Math.exp(0.25),
-            Math.exp(0.5),
-            Math.exp(0.75),
-            Math.exp(1),
-            Math.exp(1.5),
-            Math.exp(2)
-        ],
+        legend: legend,
         legendColors: {
             min: "#efefef",
             empty: "#efefef",
             max: "green",
-        }
+        },
+        cellSize:13,
+        cellPadding:4,
     });
 
     document.getElementById("user-name").textContent=user_json_data["nickname"];
@@ -143,7 +150,9 @@ function onload_draw_run(){
                 min: "#efefef",
                 empty: "#efefef",
                 max: "green",
-            }
+            },
+            cellSize:13,
+            cellPadding:4,
         });
     }else{
         document.getElementById("input_id").value=user_id;
